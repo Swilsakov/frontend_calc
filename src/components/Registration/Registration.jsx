@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 import Input from "../../utils/Input";
 import { registrationAPI } from "../../api/authAPI";
 
@@ -16,7 +17,7 @@ const Registration = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <Input
           value={email}
           setValue={setEmail}
@@ -29,10 +30,10 @@ const Registration = () => {
           type="password"
           placeholder="Password"
         />
-        <button type="submit" onClick={handleRegistration}>
+        <Button variant="primary" type="submit" onClick={handleRegistration}>
           Registration
-        </button>
-      </form>
+        </Button>
+      </Form>
     </div>
   );
 };

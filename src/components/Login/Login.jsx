@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 import Input from "../../utils/Input";
 import { loginAPI } from "../../api/authAPI";
 import { useDispatch } from "react-redux";
@@ -18,7 +19,7 @@ const Login = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <Input
           value={email}
           setValue={setEmail}
@@ -31,10 +32,10 @@ const Login = () => {
           type="password"
           placeholder="Password"
         />
-        <button type="submit" onClick={handleLogin}>
+        <Button variant="primary" type="submit" onClick={handleLogin}>
           Login
-        </button>
-      </form>
+        </Button>
+      </Form>
     </div>
   );
 };

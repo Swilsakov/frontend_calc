@@ -12,7 +12,9 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(checkSession());
+    if (localStorage.getItem("token")) {
+      dispatch(checkSession());
+    }
   }, [dispatch]);
 
   return (

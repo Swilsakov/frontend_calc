@@ -25,7 +25,8 @@ export const loginAPI = (email, password) => {
         password,
       });
       dispatch(setUserActionCreator(res.data.user));
-      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("token", res.data.token, "userId", res.data.user.id);
+      console.log(res.data);
     } catch (error) {
       alert(error.response.data.message);
       console.log(error);
@@ -41,23 +42,15 @@ export const checkSession = () => {
       });
       dispatch(setUserActionCreator(res.data.user));
     } catch (error) {
-      localStorage.removeItem("token");
-      console.log(error);
+      if (
+        error.response.status === 401 &&
+        error.response.data.message === "Token expired"
+      ) {
+        localStorage.removeItem("token");
+      } else {
+        // localStorage.removeItem("token");
+        console.log(error);
+      }
     }
   };
 };
-
-// export const authAPI = () => {
-//   return async (dispatch) => {
-//     try {
-//       const res = await axios.get(`${base_url}api/auth/auth`, {
-//         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-//       });
-//       dispatch(setUserActionCreator(res.data.user));
-//       localStorage.setItem("token", res.data.token);
-//     } catch (error) {
-//       localStorage.removeItem("token");
-//       console.log(error);
-//     }
-//   };
-// };
