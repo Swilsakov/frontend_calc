@@ -25,8 +25,8 @@ export const loginAPI = (email, password) => {
         password,
       });
       dispatch(setUserActionCreator(res.data.user));
-      localStorage.setItem("token", res.data.token, "userId", res.data.user.id);
-      console.log(res.data);
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("userId", res.data.user.id);
     } catch (error) {
       alert(error.response.data.message);
       console.log(error);
@@ -48,7 +48,7 @@ export const checkSession = () => {
       ) {
         localStorage.removeItem("token");
       } else {
-        // localStorage.removeItem("token");
+        localStorage.removeItem("token");
         console.log(error);
       }
     }
